@@ -3,7 +3,7 @@ const { test, expect, chromium } = require("@playwright/test");
 const { email, password, invalidEmail, invalidPassword } = require("../user");
 
 test("Right authorization", async ({ page }) => {
-  const browser = await chromium.launch({});
+  //const browser = await chromium.launch({});
 
   await page.goto("https://netology.ru/");
   await page.getByRole("link", { name: "Войти" }).click();
@@ -13,11 +13,11 @@ test("Right authorization", async ({ page }) => {
   await page.getByPlaceholder("Пароль").fill(password);
   await page.getByTestId("login-submit-btn").click();
   await expect(page.locator("h2")).toHaveText("Мои курсы и профессии");
-  await browser.close();
+  //await browser.close();
 });
 
 test("Wrong authorization", async ({ page }) => {
-  const browser = await chromium.launch({});
+  //const browser = await chromium.launch({});
 
   await page.goto("https://netology.ru/");
   await page.getByRole("link", { name: "Войти" }).click();
@@ -29,5 +29,5 @@ test("Wrong authorization", async ({ page }) => {
   const error = await page.locator('[data-testid="login-error-hint"]');
   await expect(error).toHaveText("Вы ввели неправильно логин или пароль");
 
-  await browser.close();
+  //await browser.close();
 });
